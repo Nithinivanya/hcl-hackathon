@@ -1,0 +1,20 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-service
+  template:
+    metadata:
+      labels:
+        app: application-service
+    spec:
+      containers:
+      - name: application-service
+        image: <your-acr-name>.azurecr.io/application-service:v1
+        ports:
+        - containerPort: 3001
